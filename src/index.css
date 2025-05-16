@@ -1,0 +1,169 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 142 72% 29%; /* #00853E */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 56 93% 66%; /* Yellow Fluo */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 1rem;
+    
+    /* Colori personalizzati per il form */
+    --form-beige: 39 28% 91%;        /* #F0EAE0 */
+    --form-green: 167 45% 25%;       /* #245C4F */
+    --form-placeholder: 37 31% 89%;  /* #F8F4EF */
+    --form-border: 36 15% 74%;       /* #BEB8AE */
+    --form-shadow: 36 9% 65%;        /* #AFA89F */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 142 70% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 56 93% 66%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-vibe-green to-emerald-600 bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-vibe-green to-emerald-600 text-white;
+  }
+  
+  .gradient-bg-alt {
+    @apply bg-gradient-to-r from-emerald-600 to-vibe-green text-white;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-grow {
+    @apply transition-transform duration-300 hover:scale-[1.03];
+  }
+
+  .animated-border {
+    position: relative;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, #00853E, #C6FF00, #00853E);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Nuovi stili per i componenti del form */
+  .form-option-button {
+    @apply text-left px-[18px] py-[12px] border-[1.5px] rounded-[10px] transition-all;
+    @apply font-['Inter'] text-[16px] font-normal;
+    @apply shadow-[0_3px_0_0_#AFA89F] mb-[10px] cursor-pointer w-fit;
+    @apply hover:shadow-[0_3px_4px_rgba(175,168,159,0.25)];
+  }
+  
+  .form-option-button-selected {
+    @apply border-black bg-gray-50;
+  }
+  
+  .form-option-button-unselected {
+    @apply border-[#BEB8AE];
+  }
+  
+  .form-selection-tag {
+    @apply bg-[#F8F4EF] text-[#245C4F] font-semibold px-[10px] py-[4px] rounded-[6px] text-[16px];
+    @apply inline-flex items-center justify-center mx-1;
+  }
+  
+  .form-selection-tag-unselected {
+    @apply bg-[#F8F4EF] text-[#C4BFB8] px-[10px] py-[4px] rounded-[6px] font-medium text-[16px];
+  }
+  
+  .form-next-button {
+    @apply bg-[#245C4F] hover:bg-[#1e4f44] text-white px-[32px] py-[16px] rounded-[12px] text-[17px] font-medium;
+    @apply transition-all shadow-[0_6px_12px_rgba(36,92,79,0.2)] hover:shadow-[0_8px_16px_rgba(36,92,79,0.25)];
+    @apply inline-flex items-center gap-[12px];
+  }
+
+  @keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+}
